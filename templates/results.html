@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scal=1.0">
+        <meta name="description" content="Compound Compass helps users find and analyze chemical compounds easily with similarity data.">
+        <title>Compound Compass - Results</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <!-- Header -->
+         <header>
+            <div class="logo-container">
+                <img src="image2.png" alt="Compound Compass Logo" class="logo" width="50" height="50">
+                <div class="site-title">Compound Compass</div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li>Home</li> 
+                    <li>Find Your Compound</li> 
+                    <li>About</li> 
+                    <li>Contact</li> 
+                </ul>
+            </nav>
+         </header>
+
+         <!-- Home Section -->
+        <section id="home" class="hero background-image"> <!-- Hero section with background image -->
+            <h1>Discover Chemical Relationships with Ease</h1> <!-- Main headline of the page -->
+            <p>Easily find and analyze similar compounds with our platform.</p> <!-- Brief description -->
+            <button onclick="scrollToSection('find')">Find Your Compound Matches Below</button> <!-- Button to navigate to the Find section -->
+        </section> 
+
+    <!-- Results Section -->
+    <section id="results">
+        <h1>Results for Similar Compounds</h1>
+        <!-- Centered Back Button -->
+        <div class="button-container">
+            <a href="{{ url_for('root') }}">
+                <button id="back-button" onclick="window.location.href='jasyWebApp.html';">Back to Home</button>
+            </a>
+        </div>     
+        <ul class="compound-list">
+            {% for compound in compounds %}
+            <li class="compound-item">
+                <div class="compound-card">
+                    <img src="{{ compound.image_url }}" alt="{{ compound.name }}" class="compound-image" width="200" height="200">
+                    <h2>{{ compound.name }}</h2>
+                    <p><strong>Molecular Formula:</strong> {{ compound.molecular_formula }}</p>
+                    <p><strong>SMILES:</strong> {{ compound.smiles }}</p>
+                    <p><strong>Charge:</strong> {{ compound.charge }}</p>
+                    <p><strong>Mass:</strong> {{ compound.mass }}</p>
+                </div>
+            </li>
+            {% else %}
+            <p>No similar compounds found.</p>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    </body>
+</html>

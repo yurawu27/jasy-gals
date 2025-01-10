@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, Response
 
 # import functions from science api: search and show images
-from similarity import smiles_to_svg
+from similarity import findSimilarCompounds, findSimilarity, smiles_to_svg
 
 app = Flask(__name__)
 

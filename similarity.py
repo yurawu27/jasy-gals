@@ -10,9 +10,15 @@ import pandas as pd
 import numpy as np
 import io
 
+# accept fingerprints and return similarity score
 def findSimilarity(fp1, fp2):
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
+'''
+1. find scaffold of user input
+2. find smilarity between smiles
+3. returns the calculated score using the function above
+'''
 def findSimilarCompounds(query, limit=0.50):
     df = pd.read_csv("data.csv", sep=",")
     smileList = df["smiles"]

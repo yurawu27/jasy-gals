@@ -1,0 +1,247 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between; /* Space between the logo-container and nav */
+    align-items: center; /* Vertically align items */
+    background-color: #0077b6;
+    padding: 1rem 2rem; /* Add padding around the header */
+    color: white;
+}
+
+/* Logo and title container */
+.logo-container {
+    display: flex;
+    align-items: center; /* Vertically center the logo and title */
+    gap: 10px; /* Add space between the logo and the title */
+}
+
+/* Logo styling */
+.logo {
+    width: 50px; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Title styling */
+.site-title {
+    font-size: 1.5rem; /* Adjust the font size */
+    font-weight: bold; /* Make the title bold */
+    color: white; /* Ensure the title matches the header style */
+}
+
+/* Navigation menu styles */
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem; /* Add space between menu items */
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    color: white; /* Navigation link color */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 1rem; /* Font size of the links */
+}
+
+/* Hero section */
+.background-image {
+    background-image: url('chemicals.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    color: white; 
+    text-align: center; 
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+/* Overlay for hero section */
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+/* Content within the hero section */
+.hero h1,
+.hero p,
+.hero button {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #00b4d8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Input section */
+#find {
+    padding: 2rem;
+    background-color: white;
+}
+
+#find h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.input-methods {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.input-box {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+}
+
+.input-box label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+#speechToSmiles {
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#speechToSmiles:hover {
+    background-color: #00b4d8;
+}
+
+/* Search button styles */
+#search-button {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Drawing Canvas */
+#molecule-drawing {
+    border: 1px solid #000;
+}
+
+/* Results Page Styles */
+#results {
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+#results h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Compound list container */
+.compound-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Individual compound item */
+.compound-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.compound-item img {
+    width: 100%; /* Ensure image fits container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+.compound-item h2 {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.5rem;
+    color: #333;
+}
+
+.compound-item p {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+.button-container {
+    text-align: center; /* Center align the content */
+    margin: 1rem 0; /* Add spacing above and below the button */
+}
+
+/* Style the back button */
+#back-button {
+    padding: 0.75rem 1.5rem; /* Adjust padding */
+    font-size: 1rem; /* Set font size */
+    background-color: #0077b6; /* Set button background color */
+    color: white; /* Set button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    text-decoration: none; /* Remove text underline */
+}
+
+#back-button:hover {
+    background-color: #7cd3ff; /* Change background color on hover */
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #023e8a;
+    color: white;
+}
+
