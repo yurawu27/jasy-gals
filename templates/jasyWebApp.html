@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
     <meta name="description" content="Compound Compass helps users find and analyze chemical compounds easily.">
     <title>Compound Compass</title> <!-- The title of the webpage -->
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="logo-container"> <!-- Container for the logo and site title -->
-            <img src="image2.png" alt="Compound Compass Logo" class="logo" width="50" height="50"> <!-- Logo for the site -->
+            <img src="{{ url_for('static', filename='image2.png')}}" alt="Compound Compass Logo" class="logo" width="50" height="50">
             <div class="site-title">Compound Compass</div> <!-- Site title next to the logo -->
         </div>
         <nav> <!-- Navigation menu -->
@@ -44,20 +44,22 @@
                 <canvas id="molecule-drawing" width="400" height="400"></canvas> <!-- Drawing area -->
                 <button id="clearCanvas" >Clear</button> <!-- Button to clear the drawing canvas -->
             </div>
-            
             <div class="input-box"> <!-- Box for chemical identifier input -->
-                <label for="smiles">Chemical Identifier:</label> <!-- Label for SMILES input -->
-                <input type="text" id="smiles" name="smiles" placeholder="Enter SMILES or Identifier"> <!-- Input field for SMILES or drug name -->
-                <button id="speechToSmiles" title="Click to speak">🎤</button> <!-- Button for voice recognition -->
-                <small>Say the drug name or spell out the SMILES.</small> <!-- Instructions for the user -->
+                <form method="POST" action="{{ url_for('root') }}">  
+                    <label for="smiles">Chemical Identifier:</label> <!-- Label for SMILES input -->
+                    <input type="text" id="smiles" name="smiles" placeholder="Enter SMILES or Identifier"> <!-- Input field for SMILES or drug name -->
+                    <button id="speechToSmiles" title="Click to speak">🎤</button> <!-- Button for voice recognition -->
+                    <small>Say the drug name or spell out the SMILES.</small> <!-- Instructions for the user -->
+                    <button type="submit">Find Similar Compounds</button>
+                </form> 
             </div>
-            
+
             <div class="input-box"> <!-- Box for file upload -->
                 <label for="file-upload">File Upload:</label> <!-- Label for file upload -->
                 <input type="file" id="file-upload"> <!-- File input -->
             </div>
         </div>
-        <button id="search-button" onclick="window.location.href='results.html';">Find Similar Compounds</button> <!-- Button to trigger search functionality -->
+       <!-- <button id="search-button" onclick="window.location.href='results.html';">Find Similar Compounds</button> -->
         <!-- </form> -->
     </section>
 

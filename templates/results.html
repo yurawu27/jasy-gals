@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scal=1.0">
         <meta name="description" content="Compound Compass helps users find and analyze chemical compounds easily with similarity data.">
         <title>Compound Compass - Results</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     </head>
 
     <body>
         <!-- Header -->
          <header>
             <div class="logo-container">
-                <img src="image2.png" alt="Compound Compass Logo" class="logo" width="50" height="50">
+                <img src="{{ url_for('static', filename='image2.png')}}" alt="Compound Compass Logo" class="logo" width="50" height="50">
                 <div class="site-title">Compound Compass</div>
             </div>
 
@@ -35,7 +35,7 @@
 
     <!-- Results Section -->
     <section id="results">
-        <h1>Results for Similar Compounds</h1>
+        <h1>Results for Similar Compounds {{user_input}} </h1>
         <!-- Centered Back Button -->
         <div class="button-container">
             <a href="{{ url_for('root') }}">
@@ -43,15 +43,15 @@
             </a>
         </div>     
         <ul class="compound-list">
-            {% for compound in compounds %}
+            {% for comp, score in compounds %}
             <li class="compound-item">
                 <div class="compound-card">
-                    <img src="{{ compound.image_url }}" alt="{{ compound.name }}" class="compound-image" width="200" height="200">
-                    <h2>{{ compound.name }}</h2>
-                    <p><strong>Molecular Formula:</strong> {{ compound.molecular_formula }}</p>
-                    <p><strong>SMILES:</strong> {{ compound.smiles }}</p>
-                    <p><strong>Charge:</strong> {{ compound.charge }}</p>
-                    <p><strong>Mass:</strong> {{ compound.mass }}</p>
+                    <img src='{{ url_for("get_image") }}?smiles={{ comp|urlencode }}'
+                    alt="{{ smiles }}"
+                    class="card-img-top w-100 overflow-hidden"
+                    style="aspect-ratio: 1">
+                    <h2>{{ comp }}</h2>
+                    <p>Similarity Score: {{score}} </p>
                 </div>
             </li>
             {% else %}
