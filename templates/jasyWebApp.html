@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
+    <title>Compound Compass</title> <!-- The title of the webpage -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container"> <!-- Container for the logo and site title -->
+            <img src="image2.png" alt="Compound Compass Logo" class="logo"> <!-- Logo for the site -->
+            <div class="site-title">Compound Compass</div> <!-- Site title next to the logo -->
+        </div>
+        <nav> <!-- Navigation menu -->
+            <ul>
+                <li><a href="#home">Home</a></li> <!-- Link to the Home section -->
+                <li><a href="#find">Find Your Compound</a></li> <!-- Link to the Find Your Compound section -->
+                <li><a href="#about">About</a></li> <!-- Placeholder for About section -->
+                <li><a href="#contact">Contact</a></li> <!-- Placeholder for Contact section -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero background-image"> <!-- Hero section with background image -->
+        <h1>Discover Chemical Relationships with Ease</h1> <!-- Main headline of the page -->
+        <p>Easily find and analyze similar compounds with our platform.</p> <!-- Brief description -->
+        <button onclick="scrollToSection('find')">Find Your Compound Matches</button> <!-- Button to navigate to the Find section -->
+    </section>    
+
+    <!-- Find Your Compound Section -->
+    <section id="find"> <!-- Section for input options -->
+        <h2>Input your compound using any of the following options:</h2> <!-- Section heading -->
+        <div class="input-methods"> <!-- Container for input methods -->
+            <div class="input-box"> <!-- Box for molecular drawing -->
+                <label for="molecule-drawing">Molecular Drawing:</label> <!-- Label for the drawing canvas -->
+                <canvas id="molecule-drawing" width="400" height="400" style="border:1px solid #000;"></canvas> <!-- Drawing area -->
+                <button id="clearCanvas" style="margin-top: 10px;">Clear</button> <!-- Button to clear the drawing canvas -->
+            </div>
+            
+            <div class="input-box"> <!-- Box for chemical identifier input -->
+                <label for="smiles">Chemical Identifier:</label> <!-- Label for SMILES input -->
+                <input type="text" id="smiles" placeholder="Enter SMILES or Identifier"> <!-- Input field for SMILES or drug name -->
+                <button id="speechToSmiles" title="Click to speak">🎤</button> <!-- Button for voice recognition -->
+                <small>Say the drug name or spell out the SMILES.</small> <!-- Instructions for the user -->
+            </div>
+            
+            <div class="input-box"> <!-- Box for file upload -->
+                <label for="file-upload">File Upload:</label> <!-- Label for file upload -->
+                <input type="file" id="file-upload"> <!-- File input -->
+            </div>
+        </div>
+        <button id="search-button">Find Similar Compounds</button> <!-- Button to trigger search functionality -->
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Shrödinger Hackathon. JASY Gals</p> <!-- Footer with copyright information -->
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
+</body>
+</html>
