@@ -17,11 +17,12 @@ app = Flask(__name__)
 def root():
     return render_template("base.html")
 
+
+@app.route("/findSimilarStructures", methods=["GET"])
 def findSimilarity(fp1, fp2):
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
-@app.route("/findSimilarStructures", methods=["GET"])
-def findSimilar(query="C1=CC=C(C=C1)C=O", limit=0.85):
+def findSimilarCompounds(query, limit=0.50):
     df = pd.read_csv("data.csv", sep=",")
     smileList = df["smiles"]
 
@@ -33,24 +34,25 @@ def findSimilar(query="C1=CC=C(C=C1)C=O", limit=0.85):
         try:
             mol = Chem.MolFromSmiles(smile)
             scaffold = MurckoScaffold.GetScaffoldForMol(mol)
-            if (
-                findSimilarity(
-                    queryFingerprint,
-                    FingerprintMols.FingerprintMol(scaffold),
-                )
-                >= limit
-            ):
-                matches.append(smile)
-        except:
-            print("Invalid")
+            similarityScaffold = findSimilarity(
+                queryFingerprint, FingerprintMols.FingerprintMol(scaffold)
+            )
 
+            if similarityScaffold == 1.0:
+                gen = rdFingerprintGenerator.GetRDKitFPGenerator()
+                similaritySmile = findSimilarity(
+                    gen.GetFingerprint(queryMolecule), gen.GetFingerprint(mol)
+                )
+                if similaritySmile >= limit:
+                    matches.append((smile, similaritySmile))
+        except:
+            continue
+    matches.sort(key=lambda x: x[1], reverse=True)
     return matches
 
-print(len(findSimilar()))
-
 @app.route("/drawMolecule", methods=["GET"])
-def drawMolecule():
-    m = Chem.MolFromSmiles("Cc1ccccc1")
+def drawMolecule(query):
+    m = Chem.MolFromSmiles(query)
     img = Draw.MolToImage(m)
     img_io = io.BytesIO()
     img.save(img_io, "PNG")
