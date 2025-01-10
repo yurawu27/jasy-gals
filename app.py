@@ -3,52 +3,50 @@ from flask import Flask, render_template, send_file, jsonify
 from rdkit import Chem
 from rdkit.Chem import Draw
 from rdkit.Chem import rdFingerprintGenerator
+from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit import DataStructs
+from rdkit.Chem.Scaffolds import MurckoScaffold
 import pandas as pd
 import numpy as np
 import io
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=["GET"])
 def root():
     return render_template("base.html")
 
-def generateFingerprint(smile):
-    m = Chem.MolFromSmiles(smile)
-    gen = rdFingerprintGenerator.GetRDKitFPGenerator()
-    return gen.GetFingerprint(m)
-
-def findSimilarity(smile1, smile2):
-    return DataStructs.TanimotoSimilarity(smile1, smile2)
+def findSimilarity(fp1, fp2):
+    return DataStructs.TanimotoSimilarity(fp1, fp2)
 
 @app.route("/findSimilarStructures", methods=["GET"])
-def findSimilarStructures(query="Cc1ccccc1", limit=0.5):
-    df = pd.read_csv('data.csv', sep=",")
-    smileList = df['smiles']
-    queryFingerprint = generateFingerprint(query)
+def findSimilar(query="C1=CC=C(C=C1)C=O", limit=0.85):
+    df = pd.read_csv("data.csv", sep=",")
+    smileList = df["smiles"]
+
+    queryMolecule = Chem.MolFromSmiles(query)
+    queryScaffold = MurckoScaffold.GetScaffoldForMol(queryMolecule)
+    queryFingerprint = FingerprintMols.FingerprintMol(queryScaffold)
     matches = []
-    for i in smileList:
-        if findSimilarity(queryFingerprint, generateFingerprint(i)) > limit:
-            matches.append(i)
-    print(matches)
-    return jsonify(matches)
+    for smile in smileList:
+        try:
+            mol = Chem.MolFromSmiles(smile)
+            scaffold = MurckoScaffold.GetScaffoldForMol(mol)
+            if (
+                findSimilarity(
+                    queryFingerprint,
+                    FingerprintMols.FingerprintMol(scaffold),
+                )
+                >= limit
+            ):
+                matches.append(smile)
+        except:
+            print("Invalid")
 
-query = "C1=CC=C(C=C1)C=O"
-limit = 0.5
-df = pd.read_csv('data.csv', sep=",")
+    return matches
 
-smileList = df['smiles']
-# print(smileList)
-queryFingerprint = generateFingerprint(query)
-print(np.array(queryFingerprint))
-matches = []
-print(findSimilarity(queryFingerprint, generateFingerprint("C1=CC=C(C(=C1)C=O)C=O")))
-
-for i in smileList:
-    if findSimilarity(queryFingerprint, generateFingerprint(i)) > limit:
-        matches.append(i)
-print(matches)
+print(len(findSimilar()))
 
 @app.route("/drawMolecule", methods=["GET"])
 def drawMolecule():
