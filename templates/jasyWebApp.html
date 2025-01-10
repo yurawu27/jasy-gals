@@ -10,7 +10,7 @@
     <!-- Header Section -->
     <header>
         <div class="logo-container"> <!-- Container for the logo and site title -->
-            <img src="image2.png" alt="Compound Compass Logo" class="logo"> <!-- Logo for the site -->
+            <img src="image2.png" alt="Compound Compass Logo" class="logo" width="50" height="50"> <!-- Logo for the site -->
             <div class="site-title">Compound Compass</div> <!-- Site title next to the logo -->
         </div>
         <nav> <!-- Navigation menu -->
@@ -27,7 +27,7 @@
     <section id="home" class="hero background-image"> <!-- Hero section with background image -->
         <h1>Discover Chemical Relationships with Ease</h1> <!-- Main headline of the page -->
         <p>Easily find and analyze similar compounds with our platform.</p> <!-- Brief description -->
-        <button onclick="scrollToSection('find')">Find Your Compound Matches</button> <!-- Button to navigate to the Find section -->
+        <button onclick="scrollToSection('find')">Find Your Compound Matches Below</button> <!-- Button to navigate to the Find section -->
     </section>    
 
     <!-- Find Your Compound Section -->
@@ -36,7 +36,7 @@
         <div class="input-methods"> <!-- Container for input methods -->
             <div class="input-box"> <!-- Box for molecular drawing -->
                 <label for="molecule-drawing">Molecular Drawing:</label> <!-- Label for the drawing canvas -->
-                <canvas id="molecule-drawing" width="400" height="400" style="border:1px solid #000;"></canvas> <!-- Drawing area -->
+                <canvas id="molecule-drawing" width="400" height="400"></canvas> <!-- Drawing area -->
                 <button id="clearCanvas" style="margin-top: 10px;">Clear</button> <!-- Button to clear the drawing canvas -->
             </div>
             
@@ -52,12 +52,13 @@
                 <input type="file" id="file-upload"> <!-- File input -->
             </div>
         </div>
-        <button id="search-button">Find Similar Compounds</button> <!-- Button to trigger search functionality -->
+        <button id="search-button" onclick="window.location.href='results.html';">Find Similar Compounds</button> <!-- Button to trigger search functionality -->
+
     </section>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2025 Shrödinger Hackathon. JASY Gals</p> <!-- Footer with copyright information -->
+        <p>2025 Shrödinger Hackathon. JASY Gals</p> <!-- Footer with copyright information -->
     </footer>
 
     <script src="script.js"></script> <!-- Link to the external JavaScript file -->

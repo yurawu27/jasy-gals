@@ -85,6 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Placeholder for search button functionality
 document.getElementById('search-button').addEventListener('click', function() {
-    alert('Search functionality is not implemented yet.'); // Pending message for search functionality
+    //alert('Search functionality is not implemented yet.'); // Pending message for search functionality
 });
 
