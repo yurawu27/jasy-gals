@@ -1,4 +1,5 @@
 from re import match
+from urllib import response
 from flask import Flask, render_template, send_file, jsonify
 from rdkit import Chem
 from rdkit.Chem import Draw
@@ -9,9 +10,12 @@ from rdkit.Chem.Scaffolds import MurckoScaffold
 import pandas as pd
 import numpy as np
 import io
+import requests
+
 
 def findSimilarity(fp1, fp2):
     return DataStructs.TanimotoSimilarity(fp1, fp2)
+
 
 def findSimilarCompounds(query, limit=0.50):
     df = pd.read_csv("data.csv", sep=",")
@@ -56,3 +60,20 @@ def smiles_to_svg(smiles: str, width: int = 400, height: int = 400) -> bytes:
     drawer.DrawMolecule(mol)
     drawer.FinishDrawing()
     return drawer.GetDrawingText().encode()
+
+
+def speech(query):
+    url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/" + query + "/JSON"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        props = data["PC_Compounds"][0]["props"]
+        for prop in props:
+            if prop["urn"]["label"] == "SMILES":
+                return prop["value"]["sval"]
+    except:
+        print("error")
+
+
+print(speech("salt"))
