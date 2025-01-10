@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scal=1.0">
+        <meta name="description" content="Compound Compass helps users find and analyze chemical compounds easily with similarity data.">
         <title>Compound Compass - Results</title>
         <link rel="stylesheet" href="styles.css">
     </head>
@@ -17,10 +18,10 @@
 
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#find">Find Your Compound</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li>Home</li> 
+                    <li>Find Your Compound</li> 
+                    <li>About</li> 
+                    <li>Contact</li> 
                 </ul>
             </nav>
          </header>
@@ -37,13 +38,15 @@
         <h1>Results for Similar Compounds</h1>
         <!-- Centered Back Button -->
         <div class="button-container">
-            <button id="back-button" onclick="window.location.href='jasyWebApp.html';">Back to Home</button>
+            <a href="{{ url_for('root') }}">
+                <button id="back-button" onclick="window.location.href='jasyWebApp.html';">Back to Home</button>
+            </a>
         </div>     
         <ul class="compound-list">
             {% for compound in compounds %}
             <li class="compound-item">
                 <div class="compound-card">
-                    <img src="{{ compound.image_url }}" alt="{{ compound.name }}" class="compound-image">
+                    <img src="{{ compound.image_url }}" alt="{{ compound.name }}" class="compound-image" width="200" height="200">
                     <h2>{{ compound.name }}</h2>
                     <p><strong>Molecular Formula:</strong> {{ compound.molecular_formula }}</p>
                     <p><strong>SMILES:</strong> {{ compound.smiles }}</p>

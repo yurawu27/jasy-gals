@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"> <!-- Character encoding for the document -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
+    <meta name="description" content="Compound Compass helps users find and analyze chemical compounds easily.">
     <title>Compound Compass</title> <!-- The title of the webpage -->
     <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
 </head>
@@ -15,10 +16,10 @@
         </div>
         <nav> <!-- Navigation menu -->
             <ul>
-                <li><a href="#home">Home</a></li> <!-- Link to the Home section -->
-                <li><a href="#find">Find Your Compound</a></li> <!-- Link to the Find Your Compound section -->
-                <li><a href="#about">About</a></li> <!-- Placeholder for About section -->
-                <li><a href="#contact">Contact</a></li> <!-- Placeholder for Contact section -->
+                <li>Home</li> 
+                <li>Find Your Compound</li> 
+                <li>About</li> 
+                <li>Contact</li> 
             </ul>
         </nav>
     </header>
@@ -33,16 +34,20 @@
     <!-- Find Your Compound Section -->
     <section id="find"> <!-- Section for input options -->
         <h2>Input your compound using any of the following options:</h2> <!-- Section heading -->
+
+        <!-- Form that sends data to the backend -->
+       <!-- <form action="/search" method="POST"> -->
+
         <div class="input-methods"> <!-- Container for input methods -->
             <div class="input-box"> <!-- Box for molecular drawing -->
                 <label for="molecule-drawing">Molecular Drawing:</label> <!-- Label for the drawing canvas -->
                 <canvas id="molecule-drawing" width="400" height="400"></canvas> <!-- Drawing area -->
-                <button id="clearCanvas" style="margin-top: 10px;">Clear</button> <!-- Button to clear the drawing canvas -->
+                <button id="clearCanvas" >Clear</button> <!-- Button to clear the drawing canvas -->
             </div>
             
             <div class="input-box"> <!-- Box for chemical identifier input -->
                 <label for="smiles">Chemical Identifier:</label> <!-- Label for SMILES input -->
-                <input type="text" id="smiles" placeholder="Enter SMILES or Identifier"> <!-- Input field for SMILES or drug name -->
+                <input type="text" id="smiles" name="smiles" placeholder="Enter SMILES or Identifier"> <!-- Input field for SMILES or drug name -->
                 <button id="speechToSmiles" title="Click to speak">🎤</button> <!-- Button for voice recognition -->
                 <small>Say the drug name or spell out the SMILES.</small> <!-- Instructions for the user -->
             </div>
@@ -53,7 +58,7 @@
             </div>
         </div>
         <button id="search-button" onclick="window.location.href='results.html';">Find Similar Compounds</button> <!-- Button to trigger search functionality -->
-
+        <!-- </form> -->
     </section>
 
     <!-- Footer Section -->
